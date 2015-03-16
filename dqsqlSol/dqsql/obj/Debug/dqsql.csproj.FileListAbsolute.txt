@@ -1,0 +1,6 @@
+C:\Users\tomr.GADVENTURES\Documents\Projects\dbsql\dbsql\dqsqlSol\dqsql\bin\Debug\dqsql.exe.config
+C:\Users\tomr.GADVENTURES\Documents\Projects\dbsql\dbsql\dqsqlSol\dqsql\bin\Debug\dqsql.exe
+C:\Users\tomr.GADVENTURES\Documents\Projects\dbsql\dbsql\dqsqlSol\dqsql\bin\Debug\dqsql.pdb
+C:\Users\tomr.GADVENTURES\Documents\Projects\dbsql\dbsql\dqsqlSol\dqsql\obj\Debug\dqsql.csprojResolveAssemblyReference.cache
+C:\Users\tomr.GADVENTURES\Documents\Projects\dbsql\dbsql\dqsqlSol\dqsql\obj\Debug\dqsql.exe
+C:\Users\tomr.GADVENTURES\Documents\Projects\dbsql\dbsql\dqsqlSol\dqsql\obj\Debug\dqsql.pdb

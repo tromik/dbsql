@@ -7,9 +7,8 @@ namespace dbsql
     {
         public static void Main(string[] args)
         {
-            /*
-             * Varialbes
-            */
+
+            int idVal = 0;
             string nameVal = "";
             string dateVal = "";
             string catVal = "";
@@ -17,15 +16,11 @@ namespace dbsql
             string sqlRec = "";
             int cnt = 1;
 
-            /*
-             * Configure SQL connection
-            */
             SqlConnection mssql = new SqlConnection("server=localhost;" +
                 "Trusted_Connection=yes;" +
                 "database=training; " +
                 "connection timeout=30;" +
                 "MultipleActiveResultSets=true");
-
 
             try
             {
@@ -36,26 +31,17 @@ namespace dbsql
                 Console.WriteLine(e.ToString());
             }
 
-            /*
-             * Truncate the target table(s)
-            */
             SqlCommand myDelete = new SqlCommand("DELETE FROM expenses_stage", mssql);
             myDelete.ExecuteNonQuery();
 
             try
             {
-                /*
-                 * Retrieve records from source
-                */
                 SqlDataReader sqlReader = null;
                 SqlCommand selectExp = new SqlCommand("SELECT * FROM expenses_source ORDER BY ID", mssql);
                 sqlReader = selectExp.ExecuteReader();
 
                 while (sqlReader.Read())
                 {
-                    /*
-                     * Read source data into vars, trim for clean strings
-                    */
                     idVal = Convert.ToInt32(sqlReader["ID"]);
                     nameVal = sqlReader["Name"].ToString().Trim();
                     dateVal = sqlReader["Date"].ToString().Trim();
@@ -64,9 +50,6 @@ namespace dbsql
 
                     sqlRec = "==> " + idVal + " | " + nameVal + " | " + dateVal + " | " + catVal + " | " + amntVal;
 
-                    /*
-                     * Check for blank, NULL, 0 values
-                    */
                     if (idVal == 0)
                     {
                         Console.Write("ID is NULL : ");
@@ -93,9 +76,6 @@ namespace dbsql
                         Console.WriteLine(sqlRec);
                     }
                     else
-                        /*
-                         * If food cost is over $200, reject
-                        */
                         if (catVal == "Food" && amntVal > 200)
                         {
                             Console.Write("Food expense is too high : ");
@@ -108,9 +88,6 @@ namespace dbsql
 
                             Console.WriteLine(" ====> AER FIRE--Inserting record!");
 
-                            /*
-                             * For every source record, insert two records to the target
-                            */
                             for (cnt = 1; cnt <= 2; cnt++)
                             {
                                 if (cnt == 1)
@@ -139,9 +116,6 @@ namespace dbsql
 
             try
             {
-                /*
-                 * Close SQL connection
-                */
                 mssql.Close();
             }
             catch (Exception e)

@@ -31,8 +31,15 @@ namespace dbsql
                 Console.WriteLine(e.ToString());
             }
 
-            SqlCommand myDelete = new SqlCommand("DELETE FROM expenses_stage", mssql);
-            myDelete.ExecuteNonQuery();
+            try
+            {
+                SqlCommand myDelete = new SqlCommand("DELETE FROM expenses_stage", mssql);
+                myDelete.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             try
             {
@@ -86,7 +93,7 @@ namespace dbsql
                             Console.Write("Good record : ");
                             Console.WriteLine(sqlRec);
 
-                            Console.WriteLine(" ====> AER FIRE--Inserting record!");
+                            Console.WriteLine("              ====> AER FIRE--Inserting record!");
 
                             for (cnt = 1; cnt <= 2; cnt++)
                             {
@@ -124,6 +131,7 @@ namespace dbsql
                 Console.ReadKey();
             }
 
+            Console.WriteLine("Integration completed, press any key");
             Console.ReadKey();
         }
     }

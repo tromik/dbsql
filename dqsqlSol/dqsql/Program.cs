@@ -16,11 +16,10 @@ namespace dbsql
             string sqlRec = "";
             int cnt = 1;
 
-            SqlConnection mssql = new SqlConnection("server=localhost;" +
-                "Trusted_Connection=yes;" +
-                "database=training; " +
-                "connection timeout=30;" +
-                "MultipleActiveResultSets=true");
+            MainClass mc = new MainClass();
+            string sqlConn = mc.SetupSQL("localhost", "training");
+
+            SqlConnection mssql = new SqlConnection(sqlConn);
 
             try
             {
@@ -133,6 +132,15 @@ namespace dbsql
 
             Console.WriteLine("Integration completed, press any key");
             Console.ReadKey();
+        }
+
+        public string SetupSQL(string sqlServer, string sqlDatabase)
+        {
+            return "server=" + sqlServer + ";" +
+                "Trusted_Connection=yes;" +
+                "database=" + sqlDatabase + ";" +
+                "connection timeout=30;" +
+                "MultipleActiveResultSets=true";
         }
     }
 }
